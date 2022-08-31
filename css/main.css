@@ -1,0 +1,1090 @@
+/* COMMON(공통) */
+body {
+  color: #333;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  font-family: 'Nanum Gothic', sans-serif;
+  height: 3000px;
+}
+img {
+  display: block;
+}
+a {
+  text-decoration: none;
+}
+.inner {
+  width: 1100px;
+  margin: 0 auto;
+  position: relative;
+}
+/* 자세히 보기라는 공통의 란들이 많기 때문에 공통인 common부분에 클래스의 이름만 사용하면 해당하는 버튼이 자연스럽게 만들어질 수 있는 구조를 작업합니다. */
+.btn { 
+  /* 가로는 130px, 안쪽여백은 10px border(테두리)는 2px에 실선 그리고 어두운회색에 #333을 선언해주고 테두리를 깎아주는 border-radius를 4px만큼 둥글게 깎아내고 
+  버튼에서 사용하는 글자의 색상을 마찬가지고 어두운회색에 #333을 사용해줍니다. 그리고 글자의 크기는 혹시라도 부모 요소로부터 어떤 특정한 글자 크기를 받을 수도 있으니
+  정확하게 16px을 명시해줍니다 그리고 글자의 두깨를 숫자 700을 넣어서 두껍게 만들어 주고 text-align으로 버튼안에서 문자의 정렬을 가운데정렬 해주고 마우스 포인터를 바꿔줍니다.
+  왜냐면 버튼이기 때문입니다 그리고 요소의 크기계산 기준인 box-sizing을 border-box로 설정해서 이제 padding이 들어가고 border가 들어간만큼 요소가 커지지 않게 작업을해주고
+  display를 block로 부여를 해서 혹시라도 a태그나 span태그 부분에 버튼이라는 클래스를 부여했을때도 정상적으로 버튼의 모양이 나올 수 있도록 블럭요소로 만들어줍니다. 그리고 
+  transition(트랜지션)속성을 통해 버튼 부분에 마우스를 올리면 배경 색깔이라던가 글자 색 같은 것들을 바꿔 줄 것인데 그러한 바뀜이 조금더 자연스럽게 변하도록 전환효과를 0.4초만큼
+  추가를 해줍니다 */
+  width: 130px;
+  padding: 10px;
+  border: 2px solid #333;
+  border-radius: 4px;
+  color: #333;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  display: block;
+  transition: .4s;
+}
+/* 이러한 버튼 같은 경우엔 당연하게 마우스를 올렸을때 효과가 있어야합니다. hover이라는 가상 클래스를 만들어줍니다. */
+.btn:hover {
+  /* 마우스를 올리면 버튼의 배경색상을 어두운회색으로 바꿔줍니다 */
+  background-color: #333;
+  /* 배경이 바뀌었으니 글자색상을 흰색으로 바꿔줍니다 */
+  color: #fff;
+  /* 이러한 버튼에는 여러가지 종류가 존재하는데 이들을 만들어주어야합니다 */
+}
+/* 버튼에 일치선택자를 통해서 그 요소의 상태를 의미하는 하이푼기호 두번을 넣어줍니다 그 첫번째 상태로 reverse라는 반전된 상태를 의미하는 단어를 추가를 해줍니다 */
+.btn.btn--reverse {
+  /* 이 btn--reverse라는 클래스가 있는 요소는 배경색상이 어두운 회색으로 해줍니다 즉, 원래는 버튼의 마우스를 올려야지만 배경색상이 #333으로 되는것인데 이 버튼 부분에 상태가 
+  reverse인 특정 요소는 이미 배경색상이 #333이고 당연하게도 글자색상도 흰색이 되는것입니다. */
+  background-color: #333;
+  color: #fff;
+  /* 이렇게 반전된 버튼도 hover하면 특정한 효과가 있어야 하니 가상클래스 선택자 hover을 붙여줍니다 */
+}
+.btn.btn--reverse:hover {
+  /* 이 btn--reverse부분에 마우스가 올라가게 되면 투명한색상 즉, 원래 색상으로 바뀌어야합니다 그래서 transparent(트랜스페어런트)를 해줍니다 */
+  background-color: transparent;
+  /* 글자 색상은 흰색에서 원래의 색상인 #333 어두운 회색으로 다시 바꿔줍니다. */
+  color: #333;
+}
+/* 위 버튼들의 선택자점수로 보면 버튼 클래스 선택자가 하나 적혀있으니 우선순위 점수가 10점이며, btn--reverse라고 해서 하나 더썻는데 .btn.btn--reverse 이 부분의 선택자는
+클래스 선택자가 2개가 되었으니 20점이 됩니다. 그래서 기존 버튼의 스타일을 .btn.btn--reverse 이부분에 선택자로 작성한 스타일로 충분히 덮어쓸 수 있는 우선 순위 점수를 확보를
+하게 된것입니다. 그래서 기본 버튼에서 reverse라는 상태를 부여하면 여기에 정의한 스타일이 덮어 써지면서 원하는, 반전된 버튼이 적용이 됩니다 그렇다면 .btn.btn--reverse:hover
+이 부분의 선택자의 점수는 2개의클래스 선택자 그리고 가상의 클래스선택자가 있기때문에 점수는 30점이 되는것입니다. 이런 방식으로 버튼의 종류들을 몇가지만 더 추가해줍니다 */
+.btn.btn--brown {
+  /* 브라운계열의 버튼 스타일을 가지는 내용을 작성 및 추가를 해줍니다. 그리고 글자 색상과 테두리색상만 브라운색으로 바꿔줍니다 */
+  color: #592B18;
+  border-color: #592b18;
+}
+.btn.btn--brown:hover {
+  /* 이 brown색상의 버튼에 마우스를 올리면 글자색은 흰색이되고 배경색은 브라운색이 되도록 설정해줍니다. */
+  color: #fff;
+  background-color: #592B18;
+  /* 또 다른 버튼을 같은 형식으로 만들어줍니다 */
+}
+.btn.btn--gold {
+  color: #D9AA84;
+  border-color: #D9AA84;
+}
+.btn.btn--gold:hover {
+  color: #fff;
+  background-color: #D9AA84;
+}
+.btn.btn--white {
+  /* 버튼이 흰색같은 경우에는 배경이 어두운 요소 위에서 버튼을 출력할 때 유용합니다. 역시 hover 효과도 추가 해줍니다. */
+  color: #fff;
+  border-color: #fff;
+}
+.btn.btn--white:hover {
+  /* 그래서 흰색에 마우스를 올리면 글자색은 어두운회색 배경색은 흰색이 되는것입니다. */
+  color: #333;
+  background-color: #fff;
+  /* 그러면 여러가지 버튼의 상태들을 만들었으며 그 상태에는 흰색 골드 브라운 리버스까지 기본저인 4개의 상태와 아무런 상태가 붙어있지 않은 완전 기본형태까지 총 5개의 종류의
+  버튼을 만들었고 앞으로 이 버튼부분에 클래스만 추가하여 바로바로 사용을 할 수 있다는 개념이 되었습니다. */
+}
+/* 토글 애니메이션 */
+.back-to-position {
+  opacity: 0;
+  transition: 1s;
+}
+.back-to-position.to-right { /* 왼쪽에서 오른쪽으로 나타나는 애니메이션 */
+  transform: translateX(-150px); /* transform:변환효과를 추가해주고 translateX(트렌스레이트x)즉, X축으로 수평으로 -150px지점으로 이동시키는 내용입니다. */
+  /* 수평이동은 기본값이 0이고 그것이 -150이기 때문에 기본적으로 화면에 있던 요소가 왼쪽으로 이동을 할 것이기때문에 그렇게 왼쪽으로 이동이 됐다라고 하면 다시 원래 상태로 돌아 온다는것은 왼쪽에서 오른쪽으로 이동하는 개념이 됩니다 이는 원래 상태로 돌아온다는 전제합니다.  */
+}
+.back-to-position.to-left { /* 오른쪽에서 왼쪽으로 나타나는 애니메이션 */
+  transform: translateX(150px); /* 원래의 위치에서 x축으로 150px 이동한 지점에 요소가 보이게 되니 원래 상태로 돌아 온다면 오른쪽에서 왼쪽으로 이동하는것처럼 보이게 됩니다. */
+}
+.show .back-to-position {
+  opacity: 1;
+  transform: translateX(0);
+}
+.show .back-to-position.delay-0 { /* 단순히 똑같이 나오는것이 심심하기 때문에 선언해줍니다. */
+  transition-delay: 0s;
+}
+.show .back-to-position.delay-1 {
+  transition-delay: .3s;
+}
+.show .back-to-position.delay-2 {
+  transition-delay: .6s;
+}
+.show .back-to-position.delay-3 {
+  transition-delay: .9s;
+}
+/* 토글애니메이션 해석 : back-to-position이라는 클래스를 가지고 있는 어떤 요소들이 있는데 그 요소들은 기본적으로 opacity값이 0입니다. 화면에 안보이는 투명한 상태가 되게 됩니다.
+그리고 요소들 중에 to-right라는 클래스를 가지고 있다면 translateX를 통해서 왼쪽으로 이동된 상태이게되고 to-left라는 클래스를 가지고 있으면 translateX(150px)을 통해서 
+오른쪽으로 이동되어진 상태가 됩니다. 그런데 만약 back-to-position이라는 클래스를 가진 요소들이 show라는 클래스를 가지고 있는것에 후손인 경우에는 그것이 opacity:1을 통해서 
+다시 화면에 보이고 그 위치에 변화가 원래있었던 그 지점 translateX(0) 즉, 원래 위치로 돌아오는 그러한 개념이 됩니다. 결국 show라는 클래스가 해당하는 섹션에 있어야지만 원래의
+상태로 돌아 올 수 있다는 것입니다. */
+
+/* HEADER */
+header {
+  width: 100%;
+  background-color: #f6f5f0;
+  border-bottom: 1px solid #c8c8c8;
+  /* position: relative; */
+  position: fixed;
+  top: 0;
+  z-index: 9;
+  /* z-index값을 넣어줌으로 배지 부분이 배경 위로 올라오게 됩니다. 또한 밑 visual안에 inner부분에 영역을 확인하기 위한 배경색을 삭제해줍니다. */
+}
+header > .inner {
+  height: 120px;
+}
+header .logo {
+  height: 75px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+header .sub-menu {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  display: flex;
+}
+header .sub-menu ul.menu {
+  font-family: arial, sans-serif;
+  display: flex;
+}
+header .sub-menu ul.menu li {
+  position: relative;
+}
+header .sub-menu ul.menu li::before {
+  content: "";
+  width: 1px;
+  height: 12px;
+  background-color: #e5e5e5;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+header .sub-menu ul.menu li:first-child::before {
+  display: none;
+}
+header .sub-menu ul.menu li a {
+  font-size: 12px;
+  padding: 11px 16px;
+  display: block; 
+  color: #656565;
+}
+header .sub-menu ul.menu li a:hover {
+  color: #000;
+}
+header .sub-menu .search {
+  height: 34px;
+  position: relative;
+}
+header .sub-menu .search input {
+  width: 36px;
+  height: 34px;
+  padding: 4px 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 5px;
+  outline: none;
+  background-color: #fff;
+  color: #777;
+  transition: width .4s;
+  font-size: 12px;
+}
+header .sub-menu .search input:focus {
+  width: 190px;
+  border-color: #669900;
+}
+header .sub-menu .search .material-icons {
+  height: 24px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 5px;
+  margin: auto;
+  transition: all .4s;
+}
+header .sub-menu .search.focused .material-icons {
+  opacity: 0;
+}
+header .main-menu {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  display: flex;
+}
+/* header .main-menu .item {
+  
+} */
+
+header .main-menu .item .item__name {
+  padding: 10px 20px 34px 20px;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+}
+header .main-menu .item:hover .item__name {
+  background-color: #2c2a29;
+  color: #669900;
+  border-radius: 6px 6px 0 0;
+}
+header .main-menu .item .item__contents {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  display: none;
+}
+header .main-menu .item:hover .item__contents {
+  display: block;
+
+}
+header .main-menu .item .item__contents .contents__menu {
+  background-color: #2c2a29;
+  /* height: 200px; 불필요해짐 */
+}
+
+header .main-menu .item .item__contents .contents__menu > ul {
+  display: flex;
+  padding: 20px 0;
+}
+
+header .main-menu .item .item__contents .contents__menu > ul > li {
+  width: 220px;
+}
+
+header .main-menu .item .item__contents .contents__menu > ul > li h4 {
+  padding: 3px 0 12px 0;
+  font-size: 14px;
+  color: #fff;
+}
+
+/* header .main-menu .item .item__contents .contents__menu > ul > li ul {
+  
+} 삭제 */
+
+header .main-menu .item .item__contents .contents__menu > ul > li ul li {
+  padding: 5px 0;
+  font-size: 12px;
+  color: #999;
+  cursor: pointer;
+}
+
+header .main-menu .item .item__contents .contents__menu > ul > li ul li:hover {
+  color: #669900;
+}
+
+header .main-menu .item .item__contents .contents__texture {
+  /* background-color: orange; */
+  /* height: 100px; */
+  padding: 26px 0;
+  font-size: 12px;
+  background-image: url("../images/main_menu_pattern.jpg");
+}
+
+header .main-menu .item .item__contents .contents__texture h4 {
+  color: #999;
+  font-weight: 700;
+  /* font-size: 12px; texture부분으로 상속되었기 때문에 필요없어짐 */
+}
+
+header .main-menu .item .item__contents .contents__texture p {
+  color: #669900;
+  margin: 4px 0 14px; /* 상 왼오 하*/
+  /* font-size: 12px; texture부분으로 상속되었기 때문에 필요없어졌습니다. */
+}
+
+header .badges {
+  position: absolute;
+  top: 132px;
+  right: 12px;
+}
+
+header .badges .badge { /* badges부분에서 미흡한 부분들을 채워줄 수 있어야합니다. */
+  border-radius: 10px; /* 각 div요소의 모서리를 둥글게 깍아줍니다. */
+  overflow: hidden; /* 모서리는 div요소를 통해서 둥글게 깍지만 그 안에 들어있는 이미지가 화면에 출력되는것입니다. 때문에 이미지가 둥글게 깍아진 밖으로 넘치지 않도록 하는 hidden 값을 넣어줍니다. */
+  margin-bottom: 12px; /* 요소의 아랫쪽 바깥 여백을 12px씩 주어 사이사이 간격을 추가해줍니다. */
+  box-shadow: 4px 4px 10px rgba(0,0,0,.15);/* 그림자를 주어 x축으로 4px y축으로 4px 블러 10px rgba함수를 통해 검정색을 추가 rgba의 a는 투명도를 의미하며 0.15의 0을 생략할 수 있습니다. */
+  cursor: pointer; /* 사용자들이 뱃지에 마우스 커서를 올리면 손가락 모양이 바뀌게 작업을 해줍니다. */
+}
+
+/* VISUAL */
+.visual {
+  margin-top: 120px;
+  /* 여기서 이야기 하는 120px은 header의 높이값입니다 위 코드에서 header의 inner부분에 높이 값이 120px이고 header 자체는 height 값이 없으니 기본값이 auto일 것이기 
+  때문에 header 자체는 높이가 최대한 줄어들려고 할 것이고 그 안에 들어있는 inner자체가 120px이 설정 되었기 때문에 그 이하보다는 줄어 들 수 없습니다 그래서 header는 곧 
+  120px이다 라고 할 수 있습니다 일단 header 부분의 border-bottom이 1px이 있지만 무시해줍시다. */
+  /* 이번엔 백그라운드 이미지를 사용하여 실제 이미지를 삽입 해줍니다 */
+  background-image: url("../images/visual_bg.jpg");
+  /* 그리고 백그라운드 포지션을 통해 배경이미지의 위치를 센터 즉, 정 가운데로 하나만 놓겠다를 선언해줍니다. */
+  background-position: center;
+  /* 그리고 visual은 높이 값이 없기 때문에 inner로 내려가서 높이를 추가해줍니다 */
+}
+.visual .inner {
+  height: 646px;
+  /* 여기서 visual부분에 inner는 css맨 위에 inner이라는 클래스를 가진 모든 요소는 가로사이즈 1100px과 마진 0 auto (화면에 중앙으로 몰아지고), 
+  position: relative; 로 이미 값이 들어가 져있기 때문에 이 inner이라는 클래스도 영향을 받습니다. */
+  /* 일단 시각적으로 확인 할 수 있도록 inner부분에 배경색을 입혀줍니다 */
+  /* background-color: orange; */
+  /* 이 상태에서 title부분에 포지션 값을 통해서 absolute 즉, 부모요소를 기준으로 배치하겟다를 선언해줍니다. */
+}
+.visual .title {
+  position: absolute;
+  /* 이 title의 구조적인 부모요소는 inner인데 이미 css맨위쪽에서 포지션 값이 있는 것을 확인 하고 왔으니 위 inner코드로는 따로 작성할 필요가 업습니다. */
+  /* 때문에 그냥 높이갚을 입력해줍니다 */
+  top: 88px;
+  left: -10px;
+  /* 이번에는 cup에 1번에 해당하는 이미지 부분으로 이동하여 부모요소 기준으로 배치를 하고 밑에서부터 0px지점 그리고 오른쪽에서 -47px로 배치를 해줍니다 */
+}
+.visual .title .btn {
+  /* 버튼이 어디에 위치할 것 인지를 명확하게 해줍니다. */
+  /* 부모요소를 기준으로 위에서 259px 왼쪽에서 173px을 넣어줍니다. */
+  position: absolute;
+  top: 259px;
+  left: 173px;
+  /* 이 버튼을 타이틀 안에 따로 지정한 이유는 만약 타이틀 값을 왼쪽에서 -10px이 아닌 100px이라고 치면 타이틀 자체가 이동을 하게 되는데 타이틀 자체와 같이 이동이 안되고
+  따로 따로 설정해 주어야 하는것을 방지 하기 위해서 타이틀안에 버튼을 따로 설정해준 것입니다. 이러한 부분들도 구조를 만들때 잘 이해를 해주어야 합니다. 여기까지 비주얼 부분에
+  레이아웃 구조를 다 정리를 했으며, 여기서 페이지가 새로고침 되면 각각의 이미지들이 순차적으로 시간 차이에 의해서 나타나지는 구조를 자바로 구현해야합니다.*/
+}
+.visual .cup1.image {
+  position: absolute;
+  bottom: 0;
+  right: -47px;
+  /* 그리고 첫번째 컵의 글씨부분은 부모요소기준으로 위에서 38px 오른쪽에서 171px지점으로 배치해줍니다. */
+}
+.visual .cup1.text {
+  position: absolute;
+  top: 38px;
+  right: 171px;
+  /* 그리고 두번째 컵의 이미지부분도 부모요소기준으로 아래에서 0px 오른쪽에서 162px지점으로 배치해줍니다. */
+}
+.visual .cup2.image {
+  position: absolute;
+  bottom: 0;
+  right: 162px;
+  /* 그리고 컵2번의 글자 부분도 부모요소기준으로 위에서 321px 오른쪽에서 416px지점으로 배치해줍니다. */
+}
+.visual .cup2.text {
+  position: absolute;
+  top: 321px;
+  right: 416px;
+  /* 그리고 spoon의 부분도 부모요소를기준으로 아래에서 0px 왼쪽에서 275px지점으로 배치해줍니다. */
+}
+.visual .spoon {
+  position: absolute;
+  bottom: 0;
+  left: 275px;
+  /* 여기까지 진행이 되었다면 각각의 이미지들이 원하는 위치에 잘 배치가 된것을 확인 할 수 있지만 inner의 배경색상이 들어간 부분이 headar에 있는 오른쪽에 배지 부분을 가리고 있는데
+  이것은 요소의 쌓임 순서 때문에 그러는것인데 이 쌓임의 순서를 조금더 명확하게 하기 위해서 main.css에 가장 위로 올라가서 z-index값을 추가 해줍니다. 현재 이 프로젝트는 header에
+  포지션 값을 사용하고 있는데 별도로 z-index값이 없기에 여기에 다른 섹션보다 더 위에 있다는 의미로 숫자 1이나 2 작은값이 아닌 좀 큰값으로 9를 넣어줍니다. */
+}
+/* fade-in부분 */
+.visual .fade-in {
+  /* 비쥬얼 내부에 html에서 만든 fade-in이라느 클래스를 가지고 있는 요소가 있는데 이 요소들은 기본적으로 opacity라는 투명도의 값이 숫자 0으로 작성되어지게 해줍니다. */
+  opacity: 0;
+  /* 그러면 fade-in이라는 클래스를 가지고 있는 요소는 투명도가 0이니 완벽하게 투명해서 화면에 안보이게 됩니다. 이렇게 안보이게 만들어 놓고 이것을 자바 스크립트로 순차적으로
+  나타날 수 있도록 작업을 해줍니다. main.js로 이동합니다. */
+}
+
+/* NOTICE부분 */
+/* .notice {
+
+} */
+.notice .notice-line {
+  position: relative;
+}
+.notice .notice-line .bg-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background-color: #333;
+}
+.notice .notice-line .bg-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background-color: #f6f5ef;
+}
+.notice .notice-line .inner {
+  height: 62px;
+  /* border: 2px solid red; 영역을 확인 하기 위해 작성 합니다  */
+  /* 밑 가로 사이즈 및 세로 사이즈를 입력했다면 inner부분에 들어있는 left, right영역이 수평이 되어야 하니 inner부분에 display값을 flex로 줍니다 */
+  display: flex;
+}
+/* 검정색과 흰색이 반반을 나눈 상태에서 inner 부분을 일단 200px 바꿔보면 inner의 높이가 늘어남에 따라 검정색과 흰색이 절반씩 사용하는 배경의 높이도 같이 바뀌는 것을 볼 수 있습니다 그것은 inner부분에 높이가 200px이고 inner의 부모요소인 notice-line은 높이값이 별로도 없으니 높이 값은 기본적으로 auto이고 그러면 세로너비가 줄어들려고 노력을 하다가 inner부분에 걸려서 높이가 200px이 되는것입니다. 그러면 notice-line이 높이가 200px이니 그 200px의 최대 너비를 배경들이 높이가 100%씩 채우려고 하니 알아서 늘어날 수 있는 구조를 갖게 되는것입니다. 결국 notice-line의 inner부분만 높이를 제어해주면 나머지 부분은 알아서 정리되는 조금더 편리한 방법으로 요소를 제어하고 있다고 보면 됩니다. 그렇지 않으면 각각의 부분에 전부다 높이값을 하나씩 명시해주어야 하겠고 그 수치가 바뀌면 여러곳에 있는 내용들을 같이 바꿔주어야 하니 최대한 상호 작용 할 수 있는 구조로 작성하는것이 매우 중요합니다. */
+.notice .notice-line .inner__left {
+  width: 60%;
+  height: 100%;
+  background-color: #333;
+  /* 밑 h2, .swiper-container, .notice-line__more가 화면에 수직이 되어 출력이 되어야 하니 디스플레이 값을 플렉스를 줍니다 */
+  display: flex;
+  align-items: center;
+  /* align-items가 center로 바뀌면서 swiper-container의 높이가 없어지면서 orange색상의 영역이 사라졌습니다 그래서 swiper-container 부분에 높이도 62px로 동일하게 맞춰줍니다. 그리고 그 영역에 외부에서 슬라이드 기능을 지원하는 자바스크립트 라이브러리를 가져와서 연결을 합니다. */
+}
+
+.notice .notice-line .inner__left h2 {
+  color: #fff; /* 글자색상 */
+  font-size: 17px; /* 글자크기 */
+  font-weight: 700; /* 글자두께 */
+  margin-right: 20px; /* 오른쪽 바깥여백 */
+  /* 수직에 가운데의 부분에 위치했으면 좋겠습니다 */
+}
+/* Swiper부분 */
+.notice .notice-line .inner__left .swiper-container {
+  height: 62px;
+  /* background-color: orange; 영역을 확인하기 위해 작성했는데 어디에도 보이지 않아 보입니다 그랬을때 공지사항과 아이콘 사이에 swiper-container가 있다는것을 알고 
+  있습니다 그랬을때 swiper-container는 지금 가로너비가 전혀 없기 때문에 그리고 부모요소는 display:flex이기 때문에 최대한 줄어들어서 화면에 안보이는 상태 입니다. */
+  /* 우선 이 부분에 최대한 늘어나라 라는 의미로 flex-grow값을 1로 설정해 줍니다 그리고 저장을 하게 되면 오렌지 색상 부분에 영역이 최대한 늘어나는 구조를 가지게 되며 그리고 
+  별도의 높이값을 부여하지 않았는데도 영역의 세로너비를 최대한 쓰고 있는것을 볼 수 있습니다 이는 display값을 flex를 부여 했을 때 안에 들어있는 아이템의 높이값이 별도로 없으면 
+  높이가 최대한 늘어나려고 하는것입니다.그래서 얼라인 아이템값이 기본값으로 스트레치인것입니다. 스트레치는 최대한 늘어나다라는 뜻입니다. 그래서 별도의 높이값이 없어도 영역이 
+  잡힐 수 있는 그러한 구조를 갖게 됩니다. */
+  flex-grow: 1;
+}
+
+.notice .notice-line .inner__left .swiper-slide {
+  height: 62px;
+  display: flex;
+  align-items: center;
+}
+
+.notice .notice-line .inner__left .swiper-slide a {
+  color: #fff;
+}
+
+.notice .notice-line .inner__left .notice-line__more {
+  /* a태그는 기본적으로 파란색이기 때문에 글자의 색상을 바꿔서 아이콘 부분이 흰색으로 표현 될 수 있도록 정리해주어여 합니다 */
+  width: 62px;
+  height: 62px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.notice .notice-line .inner__left .notice-line__more .material-icons {
+  color: #fff; /* 아이콘의 색상 */
+  font-size: 30px; /* 아이콘의 크기는 기본값이 24px이니 크기를 키워줍니다. */
+  /* 더보기 버튼 부분에 영역이 마음에 들지 않아서 notice영역에 more부분으로 이동하여 가로너비와 세로너비를 주고 디스플레이 값을 플렉스 해줍니다, 그리고 가운데 정렬을 시켜주는데 justify-content를 해주어 center로 잡아서 수평가운데 align-items도 center로 잡아서 수직가운데로 정렬 시켜줍니다. */
+  /* 그리고 공지사항 부분의 내용도 가운데로 정렬을 해주는데 다시 위쪽으로 올라가서 inner-left부분의 display:flex가 사용이 되고 있으며 거기에 수직정렬을 의미하는 align-items: center;을 입력해줍니다. */
+}
+
+.notice .notice-line .inner__right {
+  width: 40%;
+  height: 100%;
+  /* 따로 배경색을 지정해주지 않아도 됩니다 */
+  display: flex;
+  /* inner__right의 오른쪽부분으로 밀어버리기 위해 수평정렬을 flex-end로 줍니다. 그리고 수직정렬도 시켜줍니다. */
+  justify-content: end;
+  align-items: center;
+  /* 여기까지 기본적인 레이아웃은 정리가 되었습니다. */
+}
+.notice .notice-line .inner__right h2{
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.notice .notice-line .inner__right .toggle-promotion {
+  width: 62px;
+  height: 62px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.notice .notice-line .inner__right .toggle-promotion .material-icons {
+  /* 먼저 잡아두었던 더보기 버튼의 크기가 30px이기 때문에 동일한 크기를 가질 수 있도록 설정해줍니다. 그리고 실제 버튼 .toggle-promotion으로 올라가서 동일하게 가로/세로너비를 62px을 주어 정사각형으로 만들어 주고 더보기 버튼이랑은 다르게 .toggle-promotion은 a태그로 만들어져있지 않아서 마우스 커서를 포인터로 바꿔주어 사용자들에게 이부분이 버튼이다 라는 것을 인식 시켜주고 역시 display를 flex로 주어 아이콘을 수평/수직 가운데 부분으로 정렬을 해주고 h2태그로 올라가서 기존과 동일하게 글자 크기를 17px 두께는 700으로 두껍게 하고 역시 해당하는 내용이 수평정렬되어야 하니 inner__right부분에 display를 flex를 줍니다. */
+  font-size: 30px;
+}
+/* 프로모션 부분 - 요소 가운데 배치 */
+.notice .promotion {
+  height: 693px;
+  /* box-decoration-break: #f6f5ef; */
+  background-color: #f6f5ef;
+  position: relative;
+  /* 슬라이드 영역 토글 */
+  transition: height .4s; /* 전환효과를 주고 속성은 높이, 0.4초 지속시간동안 전환효과가 일어납니다. */
+  overflow: hidden; /* 크기가 줄어들면서 그 안에 있던 내용들이 밖으로 넘치는 현상을 방지 */
+}
+
+/* 요소 슬라이드 - 슬라이드 영역 토글 */
+/* hide클래스는 일치선택자를 통해 promotion이라는 요소에 hide라는 클래스가 붙어있는 경우를 의미하게 만들어야 하기 때문에 붙여쓰면 안됩니다. */
+.notice .promotion.hide {
+  height: 0; /* 높이 값을 693px에서 0px로 축소 */
+}
+
+.notice .promotion .swiper-container {
+  /* 수동으로 계산했을때 2477px인데 이렇게 수동으로 계산을 할 경우 잘 못계산을 할수 있습니다. 결국에는 수동으로 계산을 해야하지만 어떤 단위의 계산을 조금더 쉽게 처리할 수 있도록 제공하는 함수가 있습니다 그것은 calc(칼큘레이터의 약자)칼크함수라고 하며 이 함수로 특정한 단위를 계산해줄 수 있습니다. */
+  /* 칼크함수를 선언하고 819px짜리 이미지를 총 3장 사용 할것이고 (에스터리스크 * 기호 주의), 그 뒤에 사이사이 공간(여백)이 10px씩을 더하여 20px만큼 공간을 더하여 swiper container의 가로 너비를 계산하겠습니다 라고 할 수있습니다. */
+  /* calc같은 경우에 css에서 굉장히 유용하게 쓰이며, 단위가 꼭 px이 아니더라도 계산이가능합니다 예)100% - 50px을 해줄 때 100%가 얼마의 너비인지 알 수 없지만 브라우저는 화면의 어떤 특정요소의 너비를 출력 하기 위해서 실제로 계산을 해야하고 그 결과를 화면에 출력을 합니다 그결과에 100%에서 50px만큼을 뺀 나머지 수치를 calc(칼크)함수로 계산해서 해당하는 요소의 가로 또는 세로 너비로 사용할 수 있습니다.*/
+  width: calc(819px * 3 + 20px); 
+  /* 높이값은 이미지의 맞게 553px을 줍니다 */
+  height: 553px;
+  /* background-color: orange;
+  text-align: center; 
+  font-size: 200px; 
+  임시적으로 확인 하기 위한 요소들이기 때문에 필요가 없습니다.*/
+  /* 여기까지만 작성했을때 화면의 영역이 충분한 경우에는 잘 나오다가 swiper-container 위 배경색이 오렌지색이 화면안에 전부 출력 될 수 없는 크기로 확대가 된다면 왼쪽에서 부터 요소가 짤리기 시작합니다. 이는 swiper-container에 있는 가운데 이미지를 계속 화면의 정중앙에 유지 할 수 없는 것입니다. 그래서 이러한 UI들이 어느정도 한계를 가지고 있기 때문에 만약에 정 가운데에 무조건 표시를 해야하는 컨텐츠들이 있으면 다른 방법을 사용해서 구현을 해야 합니다 */
+  /* 그렇다면 방법으로는 포지션을 부모요소로 부터 받게 해줍니다 당연하게도 포지션을 주게되면 부모요소도 마찬가지로 포지션값이 있는지 확인해주셔야 합니다. 그리고 promotion이라는 특정한 영역을 기준으로 해서 위에서 40px지점에 배치하게 되면 배경색이 살짝 밑으로 내려옵니다 그리고 왼쪽에서 50%라고 해줍니다 px아닙니다 이렇게 입력하게 되면 swiper-container라는 박스가 왼쪽에서 부터 오른쪽 끝까지 프로모션 영역에 왼쪽에서 50% 지점 딱 절반 위치에 배치가 된것을 확인할 수 있습니다 이렇게되면 절반은 성공 하게 된 것입니다.*/
+  /* 이러한 부분을 어떻게 수정하면 가운데로 위치하게 할 수 있느냐 밑에서 left라는 속성을 사용했다는것을 주의 해주세요 그리고 margin-left를 입력해주시고 swiper-container라는 요소에 가로너비의 절반만큼을 값을 입력해 주시면 됩니다. 이 swiper-container라는 가로너비를 계산을 다 해서 2477px이라고 확인 했을때 그것의 절반인 -1238.5px이라고 입력을 해주면 됩니다. 중요한것은 마진-왼쪽값에 -(마이너스)값으로 요소의 가로너비의 절반만큼의 수치를 입력 했다는 것입니다. */
+  /* 정리해보자면 화면에 왼쪽 끝부터 오른쪽 끝까지 프로모션 영역임을 알고 있습니다. 그 영역을 기준으로 왼쪽에서 50%지점에 container를 위치를 시켰습니다. 그래서 처음에는 위치상으로 테스트용 글자가 있었습니다. 근데 margin-left의 마이너스(-)값으로 시작해서 container의 절반만큼의 너비를 왼쪽으로 다시 땡겨 온것입니다. 즉, 위치기준은 50%유지를 하고 요소의 가로너비의 절반 만큼을 왼쪽으로 땡겼기 때문에 일단은 위치기준은 정 가운데 있고 test 글자를 확대를 해도 정 가운데에서 확인을 할 수 있는것입니다. 이러한 방식은 굉장히 많이 사용됩니다. */
+  /* 만약 오른쪽에서 50%지점에 배치를 했다면 어떤 요소를 정 가운데로 보여지게 하기 위해선 또 오른쪽으로 절반만큼 땡겨 와야합니다 그럴때도 당연하게 right속성이 쓰일 것이며, 요소를 땡겨올때는 margin-right속성을 사용해야합니다. */
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  /* -1238.5px라는 수치는 수동으로 계산한 수치이기 때문에 이부분을 마찬가지로 css에서 제공하는 칼큘레이터 계산기 함수인 calc함수를 사용하여 swiper-container라는 요소를 계산할때 (819px * 3 + 20px) 요만큼을 썻습니다 이부분을 복사 붙여넣어주고 그것의 절반만큼을 나눠서 -2라는 음수로 가로너비를 나눠줍니다. 그렇게 하면 (819px * 3 + 20px)의 값은 2477px의 값이 나올것이고 그것을 -2로 나누니 결국엔 1238.5px이 나오게 됩니다. */
+  margin-left: calc((819px * 3 + 20px) / -2);
+}
+
+.notice .promotion .swiper-slide {
+  /* 슬라이드에 투명도를 0.5를 줍니다 */
+  opacity: .5;
+  /* 투명도에서 더 자연스럽게 이미지가 슬라이드 될 수 있도록 transion(트랜지션, 전환)해줍니다. */
+  transition: opacity 1s; /* opacity(오퍼시티)(투명도)가 1초간 자연스럽게 슬라이드  */
+  position: relative;
+}
+
+.notice .promotion .swiper-slide-active {
+  /* 화면에 정 가운데 위치한 슬라이드는 투명도를 기본값으로 돌려줍니다. */
+  opacity: 1;
+  /* 이렇게 되면 사용자들은 완전 불투명인 정 가운데에 있는 이미지를 집중해서 볼 수 있게 됩니다. 슬라이드가 바뀌게 되면 역시 불투명해지게 되고 집중하는 위치가 달라지게 되는 것을 확인 할 수 있는데 보통은 슬라이드 하는 기능에 자바스크립트 라이브러리들은 기본적인 구조가 굉장히 유사합니다 이러한 swiper라이브러리를 사용하지 않더라도 다른 라이브러리에도 이러한 기능들이 충분히 많이 있을 수 있고, 특히 swiper자바스크립트 라이브러리는 굉장히 많은 기능을 가지고 있습니다. 현업에서 쓰기도 충분하고 라이센스도 전혀 문제가 없으니 이번기회에 자세하게 알아보면 좋을 것 같습니다. */
+}
+/* swiper-자세히보기버튼 */
+.notice .promotion .swiper-slide .btn {
+  position: absolute; /* 부모요소기준으로 배치 */
+  bottom: 0; /* 부모요소에 가장 아랫쪽에 배치 */
+  /* 왼쪽과 오른쪽의 끝 점을 잡아줍니다 */
+  left: 0; /* 왼쪽에서 0px */
+  right: 0; /* 오른쪽에서 0px */
+  /* 가운데 배치 구조 */
+  margin: auto; /* 요소의 가로너비가 있어야 margin auto를 통해 브라우저가 여백을 자동으로 계산하기 때문에 btn이라는 클래스를 가진 요소에는 이미 가로너비를 명시해 놓았기 때문에 따로 명시해줄 필요는 없습니다. */
+}
+/* 페이지 버튼 pagination(페이지네이션) 영역 */
+.notice .promotion .swiper-pagination {
+  bottom: 40px; /* 밑에서 40px */
+  left: 0; /* 왼쪽에서 0px */
+  right: 0; /* 오른쪽에서 0px */
+  /* swiper-pagination부분에는 이미 자바 스크립트라이브러리에서 제공하는 기본 스타일이 들어가 있습니다. 때문에 포지션 값을 따로 지정해주지 않아도 됩니다.  */
+}
+/* 개발자도구에서 pagination 부분에 표시된 요소의 선택자 bullet(불렛) */
+.notice .promotion .swiper-pagination .swiper-pagination-bullet {
+  background-color: transparent; /* 파란색 버튼을 별도로 초기화 하지 않았으며 특정한 이미지를 사용하고 있기 때문에 transparent투명색을 지정해줍니다. */
+  background-image: url("../images/promotion_slide_pager.png"); /* 이미지를 가져옵니다. */
+  width: 12px; /* 위 이미지가 잘보일 수 있도록 가로너비 12px */
+  height: 12px; /* 위 이미지가 잘보일 수 있도록 세로너비 12px */
+  margin-right: 6px; /* bullet(불렛) 요소 사이사이에 여백이 잘 들어가도록 마진 오른쪽부분을 6px */
+  outline: none; /* 페이지 부분에 불렛을 선택시 input요소의 포커스가 잡히듯이 파란 테두리선이 나타날 수 있으니 방지합니다. */
+}
+/* pagination의 bullet요소들 중에서 가장 마지막 부분 */
+.notice .promotion .swiper-pagination .swiper-pagination-bullet:last-child {
+  /* margin-right: 6px;을 주었는데 가장 오른쪽에 있는 마지막 요소에는 우측여백이 필요가 없습니다. 이유는 사이사이 여백을 만들기 위해 추가한 값이기 때문입니다. */
+  margin-right: 0; /* 가장 오른쪽 마진여백 0px */
+}
+/* 색이 들어오는 페이지 번호에는 active라는 클래스가 추가가 되어집니다. */
+.notice .promotion .swiper-pagination .swiper-pagination-bullet-active {
+  background-image: url("../images/promotion_slide_pager_on.png"); /* 페이지 부분에 불이 들어와있다는 의미로 이미지를 추가 */
+}
+
+/* 이전, 다음 버튼 (다중선택자) : 한줄로 작성금지 (다중선택자는 반드시 줄바꿈 처리) */
+.notice .promotion .swiper-prev,
+.notice .promotion .swiper-next {
+  width: 42px; 
+  height: 42px;
+  border: 2px solid #333;
+  border-radius: 50%; /* 모서리 부분을 50%만큼 깍아줍니다. (완전한 동그라미가 됩니다.) */
+  position: absolute; /* swiper-prev의 부모요소를 기준으로 배치 */
+  top: 300px; /* 위에서 300px */
+  z-index: 1; /* 슬라이드 요소보다 위에 표시하기 위해 쌓임 순위를 올려줍니다. */
+  cursor: pointer; /* 마우스 포인터 변경 */
+  outline: none; /* input처럼 파란색 테두리를 차단 방지 */
+  /* 화살표 아이콘이 정가운데로 들어가기 위한 설정 */
+  display: flex; /* 레이아웃을 구성시킵니다. (동적인 크기/위치 조정 하겠다를 선언) */
+  justify-content: center; /* 수평 가운데 선언 */
+  align-items: center; /* 수직 가운데 선언 */
+  transition: .4s; /* 전환 효과 지속시간 0.4초 */
+}
+/* 왼쪽 버튼의 위치값 */
+.notice .promotion .swiper-prev {
+  left: 50%; /* 왼쪽에서 정가운데  */
+  margin-left: -480px; /* 50%안에서 -480px을 빼줍니다. */
+}
+/* 오른쪽 버튼의 위치값 */
+.notice .promotion .swiper-next {
+  right: 50%; /* 오른쪽에서 정가운데  */
+  margin-right: -480px; /* 50%안에서 -480px을 빼줍니다. */
+}
+/* 좌/우 이동버튼위에 마우스 드래그시 색깔 변경 */
+.notice .promotion .swiper-prev:hover,
+.notice .promotion .swiper-next:hover {
+  background-color: #333; /* 배경 색상 어두운 회색 */
+  color: #fff; /* 글자색상 흰색 */
+}
+
+/* REWARDS(리워즈)영역 */
+.rewards {
+  position: relative;
+}
+.rewards .bg-left {
+  width: 50%;
+  height: 100%;
+  background-color: #272727; /* 어두운 회색 */
+  position: absolute; /* 부모요소를 기준으로 배치 */
+}
+.rewards .bg-right {
+  width: 50%;
+  height: 100%;
+  background-color: #d5c798; /* 이미지의 오른쪽 색상과 동일값 */
+  position: absolute; /* 부모요소를 기준으로 배치 */
+  top: 0; /* absolute값의 위에서 0px */
+  right: 0; /* absolute값의 오른쪽에서 0px */
+}
+.rewards .inner {
+  background-image: url("../images/rewards.jpg");
+  height: 241px;
+  /* 미리 공통 코드로 정의를 해놓았기 때문에 따로 포지션값을 줄 필요가 없습니다. */
+}
+
+/* 리워즈 btn(버튼) 영역 */
+.rewards .btn-group {
+  position: absolute; /* 원하는 위치에 두기 위해 부모요소를 기준으로 배치 값을 선언 */
+  bottom: 24px; /* absolute값에서 밑에서 24px */
+  right: 0; /* alsolute값에서 오른쪽에서 0px : 오른쪽으로 붙게 됩니다 이렇게 하면.. */
+  width: 250px; /* 가로너비 250px */
+  display: flex; /* 디스플레이를 flex(수정가능한값)으로 선언 */
+  flex-wrap: wrap; /* 수평으로 만드는데 가로너비 250px보다 더 내용이 넘칠 것 같으면 줄 바꿈을 허용 */
+}
+.rewards .btn-group .btn.sign-up {
+  margin-right: 10px; /* 마진 오른쪽 값을 10px을 주어 사이 간격을 넓혀줌 */
+}
+.rewards .btn-group .btn.sign-in {
+  width: 110px;
+}
+.rewards .btn-group .btn.gift {
+  margin-top: 10px;
+  flex-grow: 1;
+}
+
+/* YOUTUBE VIDEO (유투브 영상 영역) */
+.youtube {
+  position: relative;
+  /* youtube가 출력되는 최대 높이 영역 */
+  height: 700px;
+  background-color: #333;
+  overflow: hidden; /* youtube라는 section에 일부 높이에서 영상의 정 가운데 부분만 화면에 출력 시켜 주게 됩니다. */
+}
+.youtube .youtube__area {
+  /* 일반적인 FHD화면인 1920 x 1080 */
+  width: 1920px;
+  background-color: orange; /* 시각적인 확인을 위해 배경색 도입 */
+  /* 앞서 기본 이해문을 도입해야합니다. 여기서 youtube__area는 container부분에 해당이 됩니다 그러면 item에 해당하는 요소가 필요한데 
+  index.html에 보면 player은 건들지 않을 것이고 youtube__area 밑 자식요소가 player말고는 없는 상태가 됩니다 
+  이때 자식요소가 따로 필요로 한데 그것이 스타일을 위한 요소라면 실제로 어떤 요소를 div로 만들어 주는것이 아닌 어디까지나 스타일 작업을 위한 요소이기 때문에 
+  최대한 css내에서 해결 할 수 있도록 해주어야 합니다. 때문에 가상요소 선택자 before (::)콜론 2개 주의해주시고 before를통해 html요소를 직접적으로 추가 하지 않고 
+  css선에서 가상의 요소를 만들어서 container를 추가를 하는데 실제로 어떠한 내용일 들어갈 것은 아니며 기본 이해문에서 살펴보았던 item이라는 클래스를 가지고 있었던 그 요소처럼 
+  동작 시키기 위해 디스플레이를 블럭으로 만들어 줍니다. before는 인라인 요소이기 때문에 가로/세로 너비를 가질수 없습니다. */
+  /* 밑 before부분을 입력 했다면 다음을 입력해줍니다. */
+  position: absolute; /* 부모 요소를 기준으로 배치 */
+  left: 50%; /* 화면에 왼쪽 영역에서 50%지점에 배치 */
+  margin-left: calc(1920px / -2); /* 정가운데 배치를 위해 바깥 왼쪽 여백 부분을 1920px의 절반 만큼을 이동 (연산함수를 통해 1920px / 2 인데 왼쪽 여백 부분은 결국엔 음수의 값이 나와야 하기 때문에 -2를 해줍니다 ) */
+  /* youtube클래스와 youtube__area의 출력 여백이 비율이 다르기 때문에 다음을 입력해야합니다. */
+  top: 50%;
+  /* 세로 너비가 얼마인줄 모르기 때문에 calc함수가 그내용을 대신할 수 있도록 가로너비 1920px을 16대9비율이 될 수 있도록 9를 곱하고 그 9를 16으로 나눠줍니다 중요한것은 그렇게 9를 곱하고 16으로 나눈 수에 -2를 나눠 주는것이 포인트입니다. -2를 해주는 이유는 세로너비의 절반만큼을 위로 끌어 올릴 수 있기 때문입니다. */
+  margin-top: calc(1920px * 9 / 16 / -2); /* 이렇게 되면 요소들이 넘치게 되는데 youtube영역에서 overflow:hidden을 해주면 youtube영역에서 넘치는 요소들을 잘라내 줍니다 */
+  
+}
+.youtube .youtube__area::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 0;
+  padding-top: 56.25%;
+}
+
+.youtube .youtube__cover {
+  background-image: url("../images/video_cover_pattern.png"); /* 패턴이미지 */
+  background-color: rgba(0,0,0,.3); /* rgba함수 rgb는 색상 a는 알파 값으로 투명도를 줄 수 있습니다. 즉, 30%의 불투명도를 갖게 됩니다 */
+  position: absolute; /* 부모 요소를 기준으로 배치 */
+  top: 0; /* absolute의 위에서 0px */
+  left: 0; /* absolute의 왼쪽에서 0px */
+  width: 100%; /* 이미지의 가로너비를 100% 사용 */
+  height: 100%; /* 이미지의 세로너비를 100% 사용 */
+  /* 사선의 패턴이 생기게 되는데 이부분은 영상이 출력이 될 것이고 그렇게 출력된 영상 위에 말그대로 cover을 덮어서 얀간 어둡게 만들어 줍니다. 
+  이유는 사용자들이 부분에 영상은 실제로 제어를 위한 영상이 아니며, 그냥 배경으로 깔려있는 영상이라는 것을 이해 시킬 수 있도록 만들어 줍니다. */
+}
+
+#player { 
+  width: 100%;
+  height: 100%;
+  position: absolute; /* 부모 요소를 기준으로 배치 - 부모요소=youtube__area */
+  top: 0; 
+  left: 0;
+}
+
+/* youtube Icon 영역 */
+.youtube .inner {
+  height: 700px;
+  /* background-color: royalblue; 영역을 확인하기 위한 코드 */
+}
+
+.youtube .floating1 {
+  position: absolute;
+  top: 50px;
+  left: 0;
+}
+.youtube .floating2 {
+  position: absolute;
+  top: 350px;
+  left: 150px;
+}
+/* .youtube .floating3 {
+  position: absolute;
+  bottom: -200px;
+  right: 0;
+} 잘라주어 SEASON PRODUCT의 inner아래에 넣어줍니다. section도 변경해야합니다. */
+
+/* SEASON PRODUCT (시즌프로덕트) 영역 */
+.season-product {
+  background-image: url("../images/season_product_bg.jpg");
+}
+
+.season-product .inner {
+  height: 400px;
+}
+
+.season-product .floating3 {
+  position: absolute;
+  top: -200px; /* 이전에는 유투브 영역에서는 아래에서 -200에 배치를 하게 만들었는데 이제는 season-product영역쪽에 배치 되었기 때문에 이 아이콘이 있는 위치는 season-product라는 section에 inner에 위쪽에 붙어 있으며 -200만큼이 빠져 나가져 있는 상태라고 볼 수 있습니다. 때문에 bottom이 아닌 top에서 -200만큼 위치를 시켜주어야 합니다. */
+  right: 0;
+}
+
+.season-product .text-group {
+  position: absolute;
+  top: 110px;
+  right: 100px;
+}
+
+.season-product .text-group .title {
+  margin-bottom: 10px;
+}
+
+.season-product .text-group .description {
+  margin-bottom: 15px;
+}
+.season-product .text-group .more {
+  
+}
+
+/* RESERVE COFFEE (리저브커피) 영역 */
+.reserve-coffee {
+  background-image: url("../images/reserve_bg.jpg");
+}
+.reserve-coffee .inner {
+  height: 400px;
+}
+
+.reserve-coffee .reserve-logo {
+  position: absolute;
+  top: 110px;
+  left: 0;
+}
+.reserve-coffee .text-group {
+  position: absolute;
+  top: 124px;
+  left: 208px;
+}
+.reserve-coffee .product {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/* PICK YOUR FAVORITE (픽 유얼 페이브리) 영역 */
+.pick-your-favorite {
+  background-image: url("../images/favorite_bg.jpg");
+  background-repeat: no-repeat; /* 이미지를 반복하지 않음 */
+  background-position: center; /* 배경의 위치를 섹션의 정 가운데로 배치 */
+  background-attachment: fixed; /* 기본적으로 요소가 화면의 위 아래로 스크롤이 될때 그 요소의 배경으로 설치된 이미지가 같이 스크롤이 되는것이 기본값이지만 그 값음 fixed로 설정함으로 더이상 요소가 스크롤될때 같이 스크롤 되지 않고 그 이미지가 화면 즉, 뷰포트 부분에 fixed(픽스트)(고정)시키는 것을 말합니다. */
+  background-size: cover; /* 배경의 이미지를 요소의 너 넓은 너비에 맞춰서 출력하는것을 이야기하며 위에 background-attachment를 fixed로 설정했기 때문에 화면(뷰포트)에 더 넓은 너비에 배경이미지가 맞춰서 출력이 됩니다. */
+  /* 이렇게 하면 PICK YOUR FAVORITE 제목부분 설명부분 버튼부분 만큼의 영역을 차지하는 섹션의 높이가 자동으로 구성이 되며, 이부분에서 배경은 뷰포트에 고정이 되어있는 상태로 pick-your-favorite 라는 섹션만 위 아래로 스크롤이 되는 것을 확인 할 수 있습니다. 이러한 현상은 background-attachment: fixed;로 구현한 아주 단순한 시간차 애니메이션 즉, 페럴렉스라고 부릅니다  */
+}
+.pick-your-favorite .inner {
+  padding: 110px 0;
+}
+.pick-your-favorite .text-group {
+  /* background-color: orange; 임시 영역 확인을 위한 색상 */
+  margin-left: 100px;
+  width: 362px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end; /* 안에 있는 내용들이 전부 우측 정렬 되었으면 할때 사용합니다. 해당하는 영역의 우측으로 붙어서 정렬되는것을 확인 할 수 있습니다. */
+}
+.pick-your-favorite .text-group .title{
+  margin-bottom: 40px;
+}
+.pick-your-favorite .text-group .description{
+  margin-bottom: 40px;
+}
+
+/* RESERVE STORE (리저브 스토어) */
+.reserve-store {
+  background-image: url("../images/reserve_store_bg.jpg");
+  background-repeat: no-repeat; /* 배경 이미지 반복 X */
+  background-position: center; /* 배경을 정 가운데 배치 */
+  background-attachment: fixed; /* 배경이미지를 뷰포트 기준으로 고정되어 스크롤이 되더라도 같이 움직이지 않도록 출력 */
+  background-size: cover; /* 배경의 크기를 더 넓은 너비에 맞춰서 출력 */
+}
+.reserve-store .inner {
+  height: 600px;
+  /* 만든 요소를 reserve-store 섹션의 정가운데로 정렬을 해주어야 합니다. */
+  display: flex; /* 어떤 방향에든 위치할 수 있으며, 동적으로 변경가능한 순서를 지정할 수도 있고, 가용한 공간 내에서 크기와 위치를 자동으로 조정 */
+  justify-content: center; /* 수평 가운데정렬 */
+  align-items: center; /* 수직 가운데정렬 */
+}
+.reserve-store .medal {
+  /* 원근법이 적용이 안되어있기 때문에 medal클래스를 가진 요소는 가로너비가 최대한 늘어나려고 시도하기 때문에 가로/세로 사이즈를 명확하게front, back의 크기와 동일하게 만들어주고, perspective라는 속성을 사용하여 원근 거리를 600px만큼 추가 해줍니다. */
+  width: 334px;
+  height: 334px;
+  perspective: 600px;
+}
+.reserve-store .medal .front, 
+.reserve-store .medal .back { /* 다중선택자개념 */
+  width: 334px; /* 싧제로 처음보이는 이미지의 가로너비는 334px이긴 한데 이 주변이 투명해서 안보이는 겁니다. 결국에는 아랫쪽에 있는 이미지의 크기와 윗쪽의 크기가 같은 크기이고 그내부의 빈 공간은 투명한 영역일 뿐입니다. */
+  height: 334px;
+  backface-visibility: hidden; /* 각각의 요소들이 뒤집어 졌을때 뒷면은 화면에서 보이지 않게 됩니다. */
+  transition: 1s;
+  position: absolute;
+} /* front와 back이라는 클래스를 가지고 있는 요소들의 공통적인 스타일을 만들어줍니다. */
+.reserve-store .medal .front {
+  /* position: absolute; 포지션 값을 absolute로 주면 이미지가 겹쳐지게 되고  */
+  transform: rotateY(0deg); /* 이부분에 rotateY추가하되 명시적으로 각도가 0도에서 시작하겠다는것을 즉, 변화가 없다는 것을 명시적으로 작성해줍니다. */
+}
+.reserve-store .medal:hover .front { /* medal부분에 마우스를 올리면 front를 어떻게 처리할 것인지에대한 내용입니다. */
+  transform: rotateY(180deg);
+}
+.reserve-store .medal .back {
+  transform: rotateY(-180deg); /* 180도로 뒤집어줍니다. 이렇게되면 back이미지는 뒤집어 지면서 뒷면이 보이게 됐는데 뒷면을 숨겼기 때문에 더이상 화면에 표시가 되지 않게 됩니다. */
+}
+.reserve-store .medal:hover .back {
+  transform: rotateY(0deg);
+}
+/* RESERVE STORE (리저브 스토어) 버튼 영역 */
+.reserve-store .medal .back .btn {
+  position: absolute; /* 부모요소를 확인했을때 포지션값이 없는데 생각을 해보니 front가 가지고 있는 position: absolute;를 back에도 동일하게 넣으면 특별히 문제가 되지 않을 듯 하여 같은 포지션을 사용하는 것이기 때문에 back부분에 따로 포지션 값을 추가 하지 않고 front에 있는 position: absolute;를 잘라서 다중선택자부분에 추가해줍니다. */
+  top: 240px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  /* 가운데 배치를 하려면 요소의 가로너비가 있어야 합니다. */
+}
+
+/* FIND STORE (파인드 스토어) 영역 */
+.find-store {
+  background-image: url("../images/find_store_bg.jpg");
+}
+.find-store .inner {
+  height: 400px;
+}
+.find-store .texture1 {
+  position: absolute;
+  top: 0;
+  left: 400px;
+}
+.find-store .texture2 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.find-store .picture {
+  border-radius: 50%; /* 모서리를 둥글게 깍아줍니다. */
+  box-shadow: 2px 2px 8px rgba(0,0,0,.5); /* 각각의 picture부분의 그림자는 x축으로 2px, y축으로 2px, 블러 8px만큼 rgba함수를 사용하여 검정색의 약50%의 불투명도를 줍니다) */
+  position: absolute;
+}
+.find-store .picture1 {
+  top: -60px;
+  left: 0;
+}
+.find-store .picture2 {
+  top: 150px;
+  left: 250px;
+}
+.find-store .text-group {
+  position: absolute;
+  top: 120px;
+  left: 550px;
+}
+.find-store .text-group .title {
+  margin-bottom: 20px;
+}
+.find-store .text-group .description {
+  margin-bottom: 20px;
+}
+
+/* AWARDS(어워즈) 영역 */
+.awards {
+  background-color: #272727;
+}
+.awards .inner {
+  padding: 40px 0;
+}
+.awards .swiper-container {
+  width: 100%;
+  height: 40px;
+}
+.awards .swiper-prev, /* 다중 선택자 */
+.awards .swiper-next { /* prev와 next의 공통적인 부분 */
+  width: 42px;
+  height: 42px;
+  border: 2px solid #fff;
+  border-radius: 50%; /* 모서리를 50% 깍아줍니다. */
+  outline: none; /* 아웃라인 속성을 사용하여 해당하는 요소를 선택 했을때 주변으로 파란색 테두리 선이 만들어지지 않도록 아웃라인의 값을 none로 입력합니다. */
+  color: #fff; /* css상속을 통해 글자색상 흰색이 그 하위 요소로 상속되면서 메타리얼 아이콘스 부분에 출력되는 아이콘이 흰색으로 나올수 있도록 해줍니다. */
+  opacity: .3; /* 30%의 불투명도를 가지게 값을 추가해줍니다. */
+  cursor: pointer; /* 버튼이라는것을 명시해줄 수 있도록 사용자들에게 마우스 포인터로 바꿔줍니다. */
+  display: flex; /* 그안에 있는 아이콘이 화면에 정 중앙으로 정렬될 수 있도록 디스플레이를 플렉스로 줍니다. */
+  justify-content: center; /* 수평 가운데 정렬 */
+  align-items: center; /* 수직 가운데 정렬 */
+  position: absolute; /* 부모요소 확인 하는데 이미 공통부분에 적용 해놨습니다. */
+  top: 0; /* 부모요소(inner)를 기준으로 위에서 0지점 */
+  bottom: 0; /* 부모요소(inner)를 기준으로 밑에서 0지점 */
+  /* 이렇게 위와 아래의 각각의 시작점과 끝점에 정확하게 값을 0으로 넣어서 배치를 했다면 마진값 auto를 넣어 가운데배치라는것을 쓸 수 있습니다 */
+  margin: auto;
+  /* 가운데 배치는 꼭 요소의 너비를 확인 해야합니다. */
+  /* 현재 이 부분은 수직 가운데 배치가 필요하기 때문에 세로 너비를 확인 해야 합니다. 위에 세로너비가 작성 되어있음을 화인 할 수 있습니다. 즉, 부모요소를 기준으로 가운데 배치를 할 수 있는 구조가 된것입니다. */
+}
+.awards .swiper-prev {
+  left: -100px;
+}
+
+.awards .swiper-next {
+  right: -100px;
+}
+
+.awards .swiper-prev:hover, /* 다중 선택자 */
+.awards .swiper-next:hover {
+  background-color: #fff;
+  color: #333;
+}
+
+/* FOOTER(푸터)영역 */
+footer {
+  background-color: #272727;
+  border-top: 1px solid #333; /* 위쪽에 만들었던 이미지가 슬라이드 되는 어워즈 섹션과 비교적 구분을 해주기위해 윗쪽 테두리 사용 */
+}
+footer .inner {
+  padding: 40px 0 60px 0; /* 위 40 우 0 아래 60 좌 0 위에서부터 시계방향으로 해석합니다. */
+}
+footer .menu {
+  display: flex; /* 메뉴 안에 있는 각각의 li태그들이 즉, 메뉴 6개가 수평의 구조를 가질 수있도록 해줍니다. */
+  justify-content: center; /* 그 전체 내용이 수평 가운데 정렬 될 수 있도록 해줍니다 */
+}
+footer .menu li {
+  position: relative;
+}
+footer .menu li::before { /* 각 메뉴에 사이사이 점들을 넣어주기 위한 부분입니다. */
+  /* before은 당연하게도 content라는 속성이 꼭 있어야합니다 */
+  content: ""; /* before라는 가상요소 선택자를 제어하여 각각의 점을 표시 하도록 만들어줍니다. */
+  width: 3px;
+  height: 3px;
+  background-color: #555;
+  /* 포지션 영역 */
+  position: absolute; /* 부모요소를 기준으로 배치 - 이 태그의 부모요소는 li가 됩니다. */
+  top: 0;
+  bottom: 0;
+  right: -1px;
+  /* 위 포지션부분을 보면 위에서 0 아래에서 0이기 때문에 수직 가운데에 배치하려는 의도가 보이기때문에 마진을 오토로줍니다. */
+  margin: auto;
+  /* before라는 이 요소는 인라인 요소입니다 그랬을때 가로세로 값을 3px씩 가지려면 디스플레이 값이 블럭으로 바뀌어야 지만 가로 세로값을 가질 수 있는데
+  디스플레이값을 추가하려고 생각을 해보니 position: absolute;가 들어가있기 때문에 따로 지정해 줄 필요가 없게됩니다 이는 absolute 혹은 fixed 라는 두개의 속성값이 사용되는
+  요소는 디스플레이값이 블럭으로 자동으로 바뀌게 되기 때문입니다. */
+}
+footer .menu li:last-child::before { /* li:last-child는 li태그들 중의 가장 마지막요소를 뜻하고 ::before는 그 마지막 요소를 어떻게 할것인지에대한 개념입니다. */
+  /* 각각의 요소의 li태그의 before라는 가상의 요소를 만들어서 그 요소에 우측부분에 3px크기의 점을 찍을 건데 이 회색의 점이 각각의 메뉴의 사이 사이에만 있으면 되기 때문에 
+  가장 마지막 li태그의 우측에 붙어있는 점은 필요하지 않습니다. */
+  display: none; /* 표시하지마라는 의미입니다. */
+}
+footer .menu li a{
+  color: #ccc; /* 아주 밝은 회색 */
+  font-size: 12px; /* 글자 크기 12px */
+  font-weight: 700; /* 글자 두께 두껍게 */
+  padding: 15px; /* 내부 여백을 통해서 15px만큼의 여백을 추가 하려는데 */
+  display: block; /* 인라인 요소는 마진과 패딩이라는 여백이라는 속성의 위 아래값을 정상적으로 사용할수 없기때문에 디스플레이를 블록요소로 바꿔주어야 합니다. */
+  /* display값은 어디까지나 사용자가 a요소를 클릭할 수 있는 범위를 늘려주기 위함입니다. */
+}
+footer .menu li a.green { /* 만약에 a태그 부분에 일치선택자를 통해서 green이라는 클래스가 붙어있으면 글자색을 초록색을 만들어줍시다. */
+  color: #669900;
+} /* 왜 이렇게 하는가? = 6개의 메뉴들 중에서 첫번째 메뉴 같은 경우에는 초록색 글씨이기 때문입니다. 퍼스트 차일드를 써도 되지만 코드를 너무 길게 늘어뜨리게 될 수 있습니다. */
+
+/* footer 버튼 영역 */
+footer .btn-group {
+  margin-top: 20px; /* 위쪽에 메뉴라는 부분과 약간의 거리를 만들어줍니다 */
+  display: flex; /* btn-group안에는 버튼들이 3개가 들어 있는데 그 버튼들이 수평이 될 수 있도록 해줍니다. */
+  justify-content: center; /* 수평 가운데 정렬 해줍니다 */
+}
+footer .btn-group .btn { /* btn-group안에 a요소라는 클래스를 가진 요소들을 의미합니다 */
+  font-size: 12px;
+  margin-right: 10px; /* 사이사이 공간을 만들어 주기위함입니다. */
+}
+footer .btn-group .btn:last-child { /* 제일 마지막에 있는 우측 여백을 지워주기 위한 작업입니다. */
+  margin-right: 0;
+}
+footer .info {
+  margin-top: 30px; /* 위 바깥 여백 30px만큼 추가 */
+  text-align: center; /* 문자 가운데 정렬 */
+}
+footer .info span { /* span은 인라인 요소이며, 인라인 요소는 위에서부터 아래로 수직으로 쌓이는 것이아닌 왼쪽에서 오른쪽으로 수평으로 쌓이는 기준을 가지고 있습니다 그 이유는
+  글씨 처럼 취급 되어야 하기 때문입니다. 그래서 따로 디스플레이를 플렉스로 잡아서 수평정렬을 해줄 필요는 없습니다. 다만 몇가지 글씨들을 제어하는 속성들만 정리하면 됩니다. */
+  margin-right: 20px; /* 우측 여백 20px */
+  color: #999;
+  font-size: 12px;
+}
+footer .info span:last-child { /* 위에서 모든 span 태그들의 오른쪽 여백을 20px을 주었으니 마지막 우측 여백을 필요하지 않기 때문에 지워주기 위한 요소입니다. */
+  margin-right: 0;
+}
+footer .copyright {
+  color: #999;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 12px; /* 요소의 위쪽에 여백을 12px 만큼 거리를 줍니다. */
+}
+footer .logo {
+  margin: 30px auto 0; /* [상 중 하]로 해석할 수 있으며, 30px은 top이고 auto는 좌/우이고 bottom은 값이 0이 됩니다. */
+  /* 이 logo같은 경우는 margin의 laft auto와 right를 통해서 가운데 정렬을 시켜줄 수 있게 됩니다. 이전에 배웠을때 조건이 하나 있었습니다. 당연하게도 가로너비가 있어야
+  했는데요, 여기서는 가운데 정렬을 따로 입력하지 않더라도 가운데 정렬이 가능합니다 그 이유는 logo라는 클래스를 가진 요소는 이미지 태그로 만들어져 있기 때문입니다. 이미지 요소
+  같은 경우에는 브라우저가 이미지를 출력하는 가로너비를 알고 있다라고 가정을 하고 이러한 margin:auto를 자동으로 계산해서 가운데 정렬을 시켜줄 수 있습니다. 그렇기 때문에
+  별도로 가로사이즈를 넣지 않더라도 이미지가 가운데 정렬이 잘 되게 됩니다. */
+}
+
+/* ScrollTo(페이지상단이동영역) */
+#to-top {
+  width: 42px;
+  height: 42px;
+  background-color: #333; /* 어두운 회색 */
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 10px; /* 모서리를 10px만큼 둥글게 깍아줍니다. */
+  cursor: pointer; /* 마우스 포인터를 바꿔줍니다. (손가락모양) */
+  display: flex; /* display: flex 를 통해서 그 내부에 들어있는 화살표 아이콘을 */
+  justify-content: center; /* 수평 가운데 정렬 해주고 */
+  align-items: center; /* 수직 가운데 정렬 해줍니다. */
+  /* 포지션 영역 */
+  position: fixed; /* 뷰포트를 기준으로 배치 */
+  bottom: 30px; /* 뷰포트를 기준으로 해서 아래에서 30px 지점 */
+  right: 30px; /* 뷰포트를 기준으로 해서 우측에서 30px 지점에 배치를 하는데 */
+  /* top로 이동하는 버튼같은 경우에는 화면을 스크롤 해서 다른 섹션들 위쪽에 표시가 되는데 이를 z-index로 우선순위를 높여줍니다. */
+  z-index: 9; /* 우선 순위를 높게 설정합니다. */
+}
