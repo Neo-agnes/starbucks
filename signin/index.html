@@ -26,6 +26,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="../css/common.css" />
+  <link rel="stylesheet" href="../css/signin.css" />
   
   <!-- 자바 외부 라이브러리서비스 부분 영역 -->
   <!-- 자바스크립트 애니메이션 영역 -->
@@ -363,8 +364,31 @@
     </div>
   </header>
 
+  <!-- 로그인 페이지 영역 -->
   <section class="signin">
-
+    <h1>로그인</h1>
+    <div class="signin__card">
+      <h2>
+        <strong>Welcome!</strong> 스타벅스에 오신 것을 환영합니다. 
+      </h2> <!-- strong = 의미적으로 강조하고 싶은 문자를 묶어주는 인라인 요소 span으로도 사용가능하지만 권장하지 않는다. 이유는 의미가 없는것보단 있는게 낫기 때문입니다. -->
+      <!-- form태그는 어떤 인형 양식을 만들어내는 태그이며, action="" 부분에는 form태그 내부에 입력하는 양식이 어떤 주소로 데이터가 전송 될 것인지에 대한 특정 주소를 입력 할 수 있습니다. -->
+      <!-- 우리는 실제 로그인 하는 개념을 만드는 것이 아니기 때문에 단순히 form이라는 양식태그를 이부분에서 사용한다는것만 명시 하는것이고 이 태그 자체가 하는 역할은 여기서는 생략 하도록 합니다. -->
+      <form>
+        <input type="text" placeholder="아이디를 입력하세요." />
+        <input type="password" placeholder="비밀번호를 입력하세요." />
+        <input type="submit" value="로그인" /> <!-- submit=제출 value= 제출하는 버튼의 이름 -->
+        <!-- 실질적으로 form태그를 입력해서 로그인이 되는 기능을 지금은 구현하지 않지만 나중에는 submit이라는 타입의 input요소를 선택하면 form태그가 동작하면서 실제 어떠한 주소로 form태그안에 있는 input의 내용을 전송해 주게 됩니다. 그러면 그 해당하는 주소 대표적으로 서버가 되는데 서버에서 데이터를 받아 사용자의 로그인 정보를 처리할 수 있도록 제작을 해주는 것 입니다. -->
+        <p>
+          * 비밀번호를 타 사이트와 같이 사용할 경우 도용 위험이 있으니, <br />
+          정기적으로 비밀번호를 변경하세요!
+        </p>
+      </form>
+      <div class="actions">
+        <a href="javascript:void(0)">회원가입</a>
+        <a href="javascript:void(0)">아이디 찾기</a>
+        <a href="javascript:void(0)">비밀번호 찾기</a>
+      </div>
+    </div>
   </section>
 
   <!-- FOOTER(푸터)영역 -->
