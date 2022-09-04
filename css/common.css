@@ -1,0 +1,410 @@
+/* COMMON(공통) */
+body {
+  color: #333;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  font-family: 'Nanum Gothic', sans-serif;
+  /* height: 3000px; */
+}
+img {
+  display: block;
+}
+a {
+  text-decoration: none;
+}
+.inner {
+  width: 1100px;
+  margin: 0 auto;
+  position: relative;
+}
+/* 자세히 보기라는 공통의 란들이 많기 때문에 공통인 common부분에 클래스의 이름만 사용하면 해당하는 버튼이 자연스럽게 만들어질 수 있는 구조를 작업합니다. */
+.btn { 
+  /* 가로는 130px, 안쪽여백은 10px border(테두리)는 2px에 실선 그리고 어두운회색에 #333을 선언해주고 테두리를 깎아주는 border-radius를 4px만큼 둥글게 깎아내고 
+  버튼에서 사용하는 글자의 색상을 마찬가지고 어두운회색에 #333을 사용해줍니다. 그리고 글자의 크기는 혹시라도 부모 요소로부터 어떤 특정한 글자 크기를 받을 수도 있으니
+  정확하게 16px을 명시해줍니다 그리고 글자의 두깨를 숫자 700을 넣어서 두껍게 만들어 주고 text-align으로 버튼안에서 문자의 정렬을 가운데정렬 해주고 마우스 포인터를 바꿔줍니다.
+  왜냐면 버튼이기 때문입니다 그리고 요소의 크기계산 기준인 box-sizing을 border-box로 설정해서 이제 padding이 들어가고 border가 들어간만큼 요소가 커지지 않게 작업을해주고
+  display를 block로 부여를 해서 혹시라도 a태그나 span태그 부분에 버튼이라는 클래스를 부여했을때도 정상적으로 버튼의 모양이 나올 수 있도록 블럭요소로 만들어줍니다. 그리고 
+  transition(트랜지션)속성을 통해 버튼 부분에 마우스를 올리면 배경 색깔이라던가 글자 색 같은 것들을 바꿔 줄 것인데 그러한 바뀜이 조금더 자연스럽게 변하도록 전환효과를 0.4초만큼
+  추가를 해줍니다 */
+  width: 130px;
+  padding: 10px;
+  border: 2px solid #333;
+  border-radius: 4px;
+  color: #333;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  display: block;
+  transition: .4s;
+}
+/* 이러한 버튼 같은 경우엔 당연하게 마우스를 올렸을때 효과가 있어야합니다. hover이라는 가상 클래스를 만들어줍니다. */
+.btn:hover {
+  /* 마우스를 올리면 버튼의 배경색상을 어두운회색으로 바꿔줍니다 */
+  background-color: #333;
+  /* 배경이 바뀌었으니 글자색상을 흰색으로 바꿔줍니다 */
+  color: #fff;
+  /* 이러한 버튼에는 여러가지 종류가 존재하는데 이들을 만들어주어야합니다 */
+}
+/* 버튼에 일치선택자를 통해서 그 요소의 상태를 의미하는 하이푼기호 두번을 넣어줍니다 그 첫번째 상태로 reverse라는 반전된 상태를 의미하는 단어를 추가를 해줍니다 */
+.btn.btn--reverse {
+  /* 이 btn--reverse라는 클래스가 있는 요소는 배경색상이 어두운 회색으로 해줍니다 즉, 원래는 버튼의 마우스를 올려야지만 배경색상이 #333으로 되는것인데 이 버튼 부분에 상태가 
+  reverse인 특정 요소는 이미 배경색상이 #333이고 당연하게도 글자색상도 흰색이 되는것입니다. */
+  background-color: #333;
+  color: #fff;
+  /* 이렇게 반전된 버튼도 hover하면 특정한 효과가 있어야 하니 가상클래스 선택자 hover을 붙여줍니다 */
+}
+.btn.btn--reverse:hover {
+  /* 이 btn--reverse부분에 마우스가 올라가게 되면 투명한색상 즉, 원래 색상으로 바뀌어야합니다 그래서 transparent(트랜스페어런트)를 해줍니다 */
+  background-color: transparent;
+  /* 글자 색상은 흰색에서 원래의 색상인 #333 어두운 회색으로 다시 바꿔줍니다. */
+  color: #333;
+}
+/* 위 버튼들의 선택자점수로 보면 버튼 클래스 선택자가 하나 적혀있으니 우선순위 점수가 10점이며, btn--reverse라고 해서 하나 더썻는데 .btn.btn--reverse 이 부분의 선택자는
+클래스 선택자가 2개가 되었으니 20점이 됩니다. 그래서 기존 버튼의 스타일을 .btn.btn--reverse 이부분에 선택자로 작성한 스타일로 충분히 덮어쓸 수 있는 우선 순위 점수를 확보를
+하게 된것입니다. 그래서 기본 버튼에서 reverse라는 상태를 부여하면 여기에 정의한 스타일이 덮어 써지면서 원하는, 반전된 버튼이 적용이 됩니다 그렇다면 .btn.btn--reverse:hover
+이 부분의 선택자의 점수는 2개의클래스 선택자 그리고 가상의 클래스선택자가 있기때문에 점수는 30점이 되는것입니다. 이런 방식으로 버튼의 종류들을 몇가지만 더 추가해줍니다 */
+.btn.btn--brown {
+  /* 브라운계열의 버튼 스타일을 가지는 내용을 작성 및 추가를 해줍니다. 그리고 글자 색상과 테두리색상만 브라운색으로 바꿔줍니다 */
+  color: #592B18;
+  border-color: #592b18;
+}
+.btn.btn--brown:hover {
+  /* 이 brown색상의 버튼에 마우스를 올리면 글자색은 흰색이되고 배경색은 브라운색이 되도록 설정해줍니다. */
+  color: #fff;
+  background-color: #592B18;
+  /* 또 다른 버튼을 같은 형식으로 만들어줍니다 */
+}
+.btn.btn--gold {
+  color: #D9AA84;
+  border-color: #D9AA84;
+}
+.btn.btn--gold:hover {
+  color: #fff;
+  background-color: #D9AA84;
+}
+.btn.btn--white {
+  /* 버튼이 흰색같은 경우에는 배경이 어두운 요소 위에서 버튼을 출력할 때 유용합니다. 역시 hover 효과도 추가 해줍니다. */
+  color: #fff;
+  border-color: #fff;
+}
+.btn.btn--white:hover {
+  /* 그래서 흰색에 마우스를 올리면 글자색은 어두운회색 배경색은 흰색이 되는것입니다. */
+  color: #333;
+  background-color: #fff;
+  /* 그러면 여러가지 버튼의 상태들을 만들었으며 그 상태에는 흰색 골드 브라운 리버스까지 기본저인 4개의 상태와 아무런 상태가 붙어있지 않은 완전 기본형태까지 총 5개의 종류의
+  버튼을 만들었고 앞으로 이 버튼부분에 클래스만 추가하여 바로바로 사용을 할 수 있다는 개념이 되었습니다. */
+}
+/* 토글 애니메이션 */
+.back-to-position {
+  opacity: 0;
+  transition: 1s;
+}
+.back-to-position.to-right { /* 왼쪽에서 오른쪽으로 나타나는 애니메이션 */
+  transform: translateX(-150px); /* transform:변환효과를 추가해주고 translateX(트렌스레이트x)즉, X축으로 수평으로 -150px지점으로 이동시키는 내용입니다. */
+  /* 수평이동은 기본값이 0이고 그것이 -150이기 때문에 기본적으로 화면에 있던 요소가 왼쪽으로 이동을 할 것이기때문에 그렇게 왼쪽으로 이동이 됐다라고 하면 다시 원래 상태로 돌아 온다는것은 왼쪽에서 오른쪽으로 이동하는 개념이 됩니다 이는 원래 상태로 돌아온다는 전제합니다.  */
+}
+.back-to-position.to-left { /* 오른쪽에서 왼쪽으로 나타나는 애니메이션 */
+  transform: translateX(150px); /* 원래의 위치에서 x축으로 150px 이동한 지점에 요소가 보이게 되니 원래 상태로 돌아 온다면 오른쪽에서 왼쪽으로 이동하는것처럼 보이게 됩니다. */
+}
+.show .back-to-position {
+  opacity: 1;
+  transform: translateX(0);
+}
+.show .back-to-position.delay-0 { /* 단순히 똑같이 나오는것이 심심하기 때문에 선언해줍니다. */
+  transition-delay: 0s;
+}
+.show .back-to-position.delay-1 {
+  transition-delay: .3s;
+}
+.show .back-to-position.delay-2 {
+  transition-delay: .6s;
+}
+.show .back-to-position.delay-3 {
+  transition-delay: .9s;
+}
+/* 토글애니메이션 해석 : back-to-position이라는 클래스를 가지고 있는 어떤 요소들이 있는데 그 요소들은 기본적으로 opacity값이 0입니다. 화면에 안보이는 투명한 상태가 되게 됩니다.
+그리고 요소들 중에 to-right라는 클래스를 가지고 있다면 translateX를 통해서 왼쪽으로 이동된 상태이게되고 to-left라는 클래스를 가지고 있으면 translateX(150px)을 통해서 
+오른쪽으로 이동되어진 상태가 됩니다. 그런데 만약 back-to-position이라는 클래스를 가진 요소들이 show라는 클래스를 가지고 있는것에 후손인 경우에는 그것이 opacity:1을 통해서 
+다시 화면에 보이고 그 위치에 변화가 원래있었던 그 지점 translateX(0) 즉, 원래 위치로 돌아오는 그러한 개념이 됩니다. 결국 show라는 클래스가 해당하는 섹션에 있어야지만 원래의
+상태로 돌아 올 수 있다는 것입니다. */
+
+/* HEADER */
+header {
+  width: 100%;
+  background-color: #f6f5f0;
+  border-bottom: 1px solid #c8c8c8;
+  /* position: relative; */
+  position: fixed;
+  top: 0;
+  z-index: 9;
+  /* z-index값을 넣어줌으로 배지 부분이 배경 위로 올라오게 됩니다. 또한 밑 visual안에 inner부분에 영역을 확인하기 위한 배경색을 삭제해줍니다. */
+}
+header > .inner {
+  height: 120px;
+}
+header .logo {
+  height: 75px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+header .sub-menu {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  display: flex;
+}
+header .sub-menu ul.menu {
+  font-family: arial, sans-serif;
+  display: flex;
+}
+header .sub-menu ul.menu li {
+  position: relative;
+}
+header .sub-menu ul.menu li::before {
+  content: "";
+  width: 1px;
+  height: 12px;
+  background-color: #e5e5e5;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+header .sub-menu ul.menu li:first-child::before {
+  display: none;
+}
+header .sub-menu ul.menu li a {
+  font-size: 12px;
+  padding: 11px 16px;
+  display: block; 
+  color: #656565;
+}
+header .sub-menu ul.menu li a:hover {
+  color: #000;
+}
+header .sub-menu .search {
+  height: 34px;
+  position: relative;
+}
+header .sub-menu .search input {
+  width: 36px;
+  height: 34px;
+  padding: 4px 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 5px;
+  outline: none;
+  background-color: #fff;
+  color: #777;
+  transition: width .4s;
+  font-size: 12px;
+}
+header .sub-menu .search input:focus {
+  width: 190px;
+  border-color: #669900;
+}
+header .sub-menu .search .material-icons {
+  height: 24px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 5px;
+  margin: auto;
+  transition: all .4s;
+}
+header .sub-menu .search.focused .material-icons {
+  opacity: 0;
+}
+header .main-menu {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  display: flex;
+}
+/* header .main-menu .item {
+  
+} */
+
+header .main-menu .item .item__name {
+  padding: 10px 20px 34px 20px;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+}
+header .main-menu .item:hover .item__name {
+  background-color: #2c2a29;
+  color: #669900;
+  border-radius: 6px 6px 0 0;
+}
+header .main-menu .item .item__contents {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  display: none;
+}
+header .main-menu .item:hover .item__contents {
+  display: block;
+
+}
+header .main-menu .item .item__contents .contents__menu {
+  background-color: #2c2a29;
+  /* height: 200px; 불필요해짐 */
+}
+
+header .main-menu .item .item__contents .contents__menu > ul {
+  display: flex;
+  padding: 20px 0;
+}
+
+header .main-menu .item .item__contents .contents__menu > ul > li {
+  width: 220px;
+}
+
+header .main-menu .item .item__contents .contents__menu > ul > li h4 {
+  padding: 3px 0 12px 0;
+  font-size: 14px;
+  color: #fff;
+}
+
+/* header .main-menu .item .item__contents .contents__menu > ul > li ul {
+  
+} 삭제 */
+
+header .main-menu .item .item__contents .contents__menu > ul > li ul li {
+  padding: 5px 0;
+  font-size: 12px;
+  color: #999;
+  cursor: pointer;
+}
+
+header .main-menu .item .item__contents .contents__menu > ul > li ul li:hover {
+  color: #669900;
+}
+
+header .main-menu .item .item__contents .contents__texture {
+  /* background-color: orange; */
+  /* height: 100px; */
+  padding: 26px 0;
+  font-size: 12px;
+  background-image: url("../images/main_menu_pattern.jpg");
+}
+
+header .main-menu .item .item__contents .contents__texture h4 {
+  color: #999;
+  font-weight: 700;
+  /* font-size: 12px; texture부분으로 상속되었기 때문에 필요없어짐 */
+}
+
+header .main-menu .item .item__contents .contents__texture p {
+  color: #669900;
+  margin: 4px 0 14px; /* 상 왼오 하*/
+  /* font-size: 12px; texture부분으로 상속되었기 때문에 필요없어졌습니다. */
+}
+
+header .badges {
+  position: absolute;
+  top: 132px;
+  right: 12px;
+}
+
+header .badges .badge { /* badges부분에서 미흡한 부분들을 채워줄 수 있어야합니다. */
+  border-radius: 10px; /* 각 div요소의 모서리를 둥글게 깍아줍니다. */
+  overflow: hidden; /* 모서리는 div요소를 통해서 둥글게 깍지만 그 안에 들어있는 이미지가 화면에 출력되는것입니다. 때문에 이미지가 둥글게 깍아진 밖으로 넘치지 않도록 하는 hidden 값을 넣어줍니다. */
+  margin-bottom: 12px; /* 요소의 아랫쪽 바깥 여백을 12px씩 주어 사이사이 간격을 추가해줍니다. */
+  box-shadow: 4px 4px 10px rgba(0,0,0,.15);/* 그림자를 주어 x축으로 4px y축으로 4px 블러 10px rgba함수를 통해 검정색을 추가 rgba의 a는 투명도를 의미하며 0.15의 0을 생략할 수 있습니다. */
+  cursor: pointer; /* 사용자들이 뱃지에 마우스 커서를 올리면 손가락 모양이 바뀌게 작업을 해줍니다. */
+}
+
+/* FOOTER(푸터)영역 */
+footer {
+  background-color: #272727;
+  border-top: 1px solid #333; /* 위쪽에 만들었던 이미지가 슬라이드 되는 어워즈 섹션과 비교적 구분을 해주기위해 윗쪽 테두리 사용 */
+}
+footer .inner {
+  padding: 40px 0 60px 0; /* 위 40 우 0 아래 60 좌 0 위에서부터 시계방향으로 해석합니다. */
+}
+footer .menu {
+  display: flex; /* 메뉴 안에 있는 각각의 li태그들이 즉, 메뉴 6개가 수평의 구조를 가질 수있도록 해줍니다. */
+  justify-content: center; /* 그 전체 내용이 수평 가운데 정렬 될 수 있도록 해줍니다 */
+}
+footer .menu li {
+  position: relative;
+}
+footer .menu li::before { /* 각 메뉴에 사이사이 점들을 넣어주기 위한 부분입니다. */
+  /* before은 당연하게도 content라는 속성이 꼭 있어야합니다 */
+  content: ""; /* before라는 가상요소 선택자를 제어하여 각각의 점을 표시 하도록 만들어줍니다. */
+  width: 3px;
+  height: 3px;
+  background-color: #555;
+  /* 포지션 영역 */
+  position: absolute; /* 부모요소를 기준으로 배치 - 이 태그의 부모요소는 li가 됩니다. */
+  top: 0;
+  bottom: 0;
+  right: -1px;
+  /* 위 포지션부분을 보면 위에서 0 아래에서 0이기 때문에 수직 가운데에 배치하려는 의도가 보이기때문에 마진을 오토로줍니다. */
+  margin: auto;
+  /* before라는 이 요소는 인라인 요소입니다 그랬을때 가로세로 값을 3px씩 가지려면 디스플레이 값이 블럭으로 바뀌어야 지만 가로 세로값을 가질 수 있는데
+  디스플레이값을 추가하려고 생각을 해보니 position: absolute;가 들어가있기 때문에 따로 지정해 줄 필요가 없게됩니다 이는 absolute 혹은 fixed 라는 두개의 속성값이 사용되는
+  요소는 디스플레이값이 블럭으로 자동으로 바뀌게 되기 때문입니다. */
+}
+footer .menu li:last-child::before { /* li:last-child는 li태그들 중의 가장 마지막요소를 뜻하고 ::before는 그 마지막 요소를 어떻게 할것인지에대한 개념입니다. */
+  /* 각각의 요소의 li태그의 before라는 가상의 요소를 만들어서 그 요소에 우측부분에 3px크기의 점을 찍을 건데 이 회색의 점이 각각의 메뉴의 사이 사이에만 있으면 되기 때문에 
+  가장 마지막 li태그의 우측에 붙어있는 점은 필요하지 않습니다. */
+  display: none; /* 표시하지마라는 의미입니다. */
+}
+footer .menu li a{
+  color: #ccc; /* 아주 밝은 회색 */
+  font-size: 12px; /* 글자 크기 12px */
+  font-weight: 700; /* 글자 두께 두껍게 */
+  padding: 15px; /* 내부 여백을 통해서 15px만큼의 여백을 추가 하려는데 */
+  display: block; /* 인라인 요소는 마진과 패딩이라는 여백이라는 속성의 위 아래값을 정상적으로 사용할수 없기때문에 디스플레이를 블록요소로 바꿔주어야 합니다. */
+  /* display값은 어디까지나 사용자가 a요소를 클릭할 수 있는 범위를 늘려주기 위함입니다. */
+}
+footer .menu li a.green { /* 만약에 a태그 부분에 일치선택자를 통해서 green이라는 클래스가 붙어있으면 글자색을 초록색을 만들어줍시다. */
+  color: #669900;
+} /* 왜 이렇게 하는가? = 6개의 메뉴들 중에서 첫번째 메뉴 같은 경우에는 초록색 글씨이기 때문입니다. 퍼스트 차일드를 써도 되지만 코드를 너무 길게 늘어뜨리게 될 수 있습니다. */
+
+/* footer 버튼 영역 */
+footer .btn-group {
+  margin-top: 20px; /* 위쪽에 메뉴라는 부분과 약간의 거리를 만들어줍니다 */
+  display: flex; /* btn-group안에는 버튼들이 3개가 들어 있는데 그 버튼들이 수평이 될 수 있도록 해줍니다. */
+  justify-content: center; /* 수평 가운데 정렬 해줍니다 */
+}
+footer .btn-group .btn { /* btn-group안에 a요소라는 클래스를 가진 요소들을 의미합니다 */
+  font-size: 12px;
+  margin-right: 10px; /* 사이사이 공간을 만들어 주기위함입니다. */
+}
+footer .btn-group .btn:last-child { /* 제일 마지막에 있는 우측 여백을 지워주기 위한 작업입니다. */
+  margin-right: 0;
+}
+footer .info {
+  margin-top: 30px; /* 위 바깥 여백 30px만큼 추가 */
+  text-align: center; /* 문자 가운데 정렬 */
+}
+footer .info span { /* span은 인라인 요소이며, 인라인 요소는 위에서부터 아래로 수직으로 쌓이는 것이아닌 왼쪽에서 오른쪽으로 수평으로 쌓이는 기준을 가지고 있습니다 그 이유는
+  글씨 처럼 취급 되어야 하기 때문입니다. 그래서 따로 디스플레이를 플렉스로 잡아서 수평정렬을 해줄 필요는 없습니다. 다만 몇가지 글씨들을 제어하는 속성들만 정리하면 됩니다. */
+  margin-right: 20px; /* 우측 여백 20px */
+  color: #999;
+  font-size: 12px;
+}
+footer .info span:last-child { /* 위에서 모든 span 태그들의 오른쪽 여백을 20px을 주었으니 마지막 우측 여백을 필요하지 않기 때문에 지워주기 위한 요소입니다. */
+  margin-right: 0;
+}
+footer .copyright {
+  color: #999;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 12px; /* 요소의 위쪽에 여백을 12px 만큼 거리를 줍니다. */
+}
+footer .logo {
+  margin: 30px auto 0; /* [상 중 하]로 해석할 수 있으며, 30px은 top이고 auto는 좌/우이고 bottom은 값이 0이 됩니다. */
+  /* 이 logo같은 경우는 margin의 laft auto와 right를 통해서 가운데 정렬을 시켜줄 수 있게 됩니다. 이전에 배웠을때 조건이 하나 있었습니다. 당연하게도 가로너비가 있어야
+  했는데요, 여기서는 가운데 정렬을 따로 입력하지 않더라도 가운데 정렬이 가능합니다 그 이유는 logo라는 클래스를 가진 요소는 이미지 태그로 만들어져 있기 때문입니다. 이미지 요소
+  같은 경우에는 브라우저가 이미지를 출력하는 가로너비를 알고 있다라고 가정을 하고 이러한 margin:auto를 자동으로 계산해서 가운데 정렬을 시켜줄 수 있습니다. 그렇기 때문에
+  별도로 가로사이즈를 넣지 않더라도 이미지가 가운데 정렬이 잘 되게 됩니다. */
+}

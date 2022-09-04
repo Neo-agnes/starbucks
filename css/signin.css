@@ -1,0 +1,82 @@
+.signin {
+  margin-top: 120px;
+  padding: 100px 0 150px; /* 상 중 하 */
+  background-image: url("../images/signin_bg.jpg");
+  background-repeat: no-repeat; /* 반복 하지 않겠다 */
+  background-position: center; /* 이미지를 정 가운데 배치 */
+  background-attachment: fixed; /* 스크롤 할 때 요소와 같이 스크롤 되지 않고 뷰포트에 고정되어 스크롤이 되도록 한다. */
+  background-size: cover; /* 뷰 포트에 더 넓은 너비에 이미지가 맞춰지도록 작업합니다. */
+}
+.signin h1 {
+  color: #fff;
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 24px;
+}
+.signin__card { /* signin이라는 부모요소의 섹션부분에 부모요소의 선택자는 명시가 안되어 있는데 이는 명시가 되어있다고 가정한다면 signin 이라는것이 중복이 되는데 signin__card 즉, signin의 언더바 두번이기 때문에 일부분에 해당하는 어떤 가드다 라는것을 충분히 나타내고 있기 때문에 signin의 섹션이름을 생략해 줄 수 있습니다. */
+  width: 500px;
+  margin: 0 auto;
+  border-radius: 6px; /* 모서리를 6px만큼 깍아줍니다. */
+  background-color: #f6f5f0;
+  box-shadow: 2px 2px 20px rgba(0, 0, 0, .3); /* 요소의 그림자를 x축으로 2px y축으로 2px 이동해서 20px의 흐림처리(블러효과)를 준다음 그림자의 색상은 rgba를 통해서 000 검정색의 a(알파)값은 0.3 즉, 30%의 불투명도를 가지는 그림자로 넣어줍니다. */
+  color: #555; /* 이 카드 내부에서 사용하는 모든 글자 색상은 회색으로 처리해줍니다. */
+}
+.signin__card h2 {
+  padding: 30px;
+  font-size: 18px;
+  text-align: center;
+  border-bottom: 1px solid #ddd; /* 아래쪽 실선 */
+}
+.signin__card h2 strong {
+  font-weight: 700;
+  color: #006633;
+}
+.signin__card form {
+  padding: 30px 22px; /* 위/아래, 좌/우 여백 */
+}
+.signin__card form input {
+  width: 100%; /* 최대한 늘려서 사용 */
+  margin-bottom: 12px; 
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  outline: none; /* border를 사용하니까 요소가 포커스 되었을때 주변에 생기는 파란색 선을 none로 지워줍니다. */
+  box-sizing: border-box; /* padding과 border를 사용하기 때문에 사용한 값만큼 요소의 크기가 늘어날 것이기 때문에 그것을 방지하기위해 border-box로 크기를 계산해줍니다. */
+  font-size: 14px;
+}
+.signin__card form [type="submit"] { /* []대괄호가 붙었다는 것은 속성 선택자가 붙었다는 것을 의미합니다. 즉, type이라는 속성이 submit인 그 요소를 선택하는것입니다. input요소중에 type이 submit인 요소가 하나있었습니다. 거기에 값을 우리는 로그인이라고 입력을 했습니다. */
+  background-color: #006633; /* 그 요소는 마치 버튼처럼 사용되기 때문에 배경색을 스타벅스 초록색으로 입력을 해줍니다. */
+  border: none; /* 테두리선 사용하지 않음 */
+  color: #fff; /* 그 안에서 사용하는 글자 색은 흰색 */
+  font-size: 20px;
+  cursor: pointer; /* 버튼이기 때문에 마우스를 드래그시 커서 모양이 포인트(손가락모양)가 되도록 처리를 해줍니다. */
+  /* 쉽게 설명하자면 : type이 submit인 요소를 버튼으로 만드는 과정이라고 설명 할 수 있습니다. */
+}
+/* 주의 사항 영역 */
+.signin__card form p {
+  font-size: 12px;
+  color: #006633;
+  text-align: center;
+}
+/* 회원가입, 아이디찾기, 비밀번호찾기 영역 */
+.signin__card .actions { /* 각각의 a태그들의 컨테이너 설정 */
+  display: flex; /* 수평 정렬 */
+  border-top: 1px solid #ddd;
+}
+.signin__card .actions a { /* 각각의 a태그들의 아이템 설정 */
+  flex-grow: 1; /* 요소의 증가 너비 1비율 */
+  flex-basis: 0; /* 기본 너비 0으로 없는 상태입니다. */
+  /* 즉, 각각의 a태그는 기본너비로 증가너비가 1로 설정 했기 때문에 1:1:1비율로 버튼이 만들어 지는 개념입니다. */
+  text-align: center; 
+  padding: 20px;
+  color: #555;
+  font-size: 14px;
+  border-right: 1px solid #ddd;
+}
+.signin__card .actions a:last-child { /* 버튼의 사이사이에만 테두리선이 들어가는 것을 원하기 때문에 마지막 오른쪽은 지워줍니다. */
+  border-right: none;
+}
+.signin__card .actions a:hover { /* 각각의 a태그에 마우스를 올리면 */
+  text-decoration: underline; /* 글자에 밑줄이 쳐집니다. */
+}
